@@ -23,6 +23,13 @@ class ViewController: UIViewController {
         
         let storedName = UserDefaults.standard.object(forKey: "name")
         let storedDate = UserDefaults.standard.object(forKey: "date")
+        
+        if let newName = storedName as? String {
+            nameresult.text = newName
+        }
+        if let newDate = storedDate as? String {
+            dateresult.text = newDate
+        }
     }
 
     @IBAction func button(_ sender: Any) {
@@ -35,5 +42,18 @@ class ViewController: UIViewController {
         dateresult.text = "Birthday: \(date.text!)"
     }
     
+    @IBAction func deleteButton(_ sender: Any) {
+        let storedName = UserDefaults.standard.object(forKey: "name")
+        let storedDate = UserDefaults.standard.object(forKey: "date")
+        
+        if (storedName as? String) != nil{
+            UserDefaults.standard.removeObject(forKey: "name")
+            nameresult.text = "Name: "
+        }
+        if (storedDate as? String) != nil{
+            UserDefaults.standard.removeObject(forKey: "date")
+            dateresult.text = "Birthday: "
+        }
+    }
 }
 
